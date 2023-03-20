@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "plotly": "^1.0.6",
+    "plotly.js": "^2.20.0",
+    "plotly.js-dist": "^2.20.0",
+    "plotly.js-dist-min": "^2.20.0"
   }
 }
