@@ -1,17 +1,118 @@
 <head>
   <!-- Load hancock.js into the DOM -->
-  <!-- <script
-    type="module"
-    src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"
-  ></script> -->
   <script type="module" src="./hancock.js"></script>
-  <!-- <script type="module" src="lodash"></script> -->
+  <style>
+    datalist {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      writing-mode: vertical-lr;
+      width: 200px;
+    }
+
+    option {
+      padding: 0;
+    }
+
+    input[type="range"] {
+      width: 300px;
+      margin: 0
+    }
+
+    h2 {
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="height"><!-- Height chart will be drawn inside this DIV --></div>
-  <div id="velocity"><!-- Velocity chart will be drawn inside this DIV --></div>
-  <div id="acceleration">
-    <!-- Acceleration chart will be drawn inside this DIV -->
-  </div>
+  <h1>Tower Jump!</h1>
+  <form
+    action="#"
+    id="updateConstants"
+    oninput="
+    CValue.value = C_drag.valueAsNumber;
+    areaValue.value = CSArea.valueAsNumber;
+    "
+  >
+    <!-- Weight Input -->
+    <label for="weight">Weight:</label>
+    <input
+      type="number"
+      id="weight"
+      name="weight"
+      value="175"
+      min="1"
+      max="10000"
+      required
+    />
+    lbs &nbsp;
+    <!-- Tower Height Input -->
+    <label for="tower_height">Tower Height:</label>
+    <input
+      type="number"
+      id="tower_height"
+      name="tower_height"
+      value="1128"
+      min="5"
+      max="10000"
+      required
+    />
+    ft
+    <br />
+    <br />
+    <!-- Cross-Sectional Area Slider -->
+    <label for="CSArea">Cross-Sectional Area</label> <br />
+    <input
+      type="range"
+      id="CSArea"
+      name="CSArea"
+      min="2"
+      max="10"
+      value="5"
+      step="0.1"
+    />
+    <!-- Fall Time Report -->
+    <output name="areaValue" for="CSArea">5</output> ft<sup>2</sup>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <text style="color: red">*It takes <span id="fallTime">10.094</span> seconds to hit the ground*</text>
+    <br /><br />
+    <!-- Drag Coefficient Slider -->
+    <label for="C_drag">Drag Coefficient</label> <br />
+    <input
+      type="range"
+      id="C_drag"
+      name="C_drag"
+      min="0.4"
+      max="1.2"
+      value="1.0"
+      step="0.001"
+      list="values"
+    />
+    <output name="CValue" for="C_drag">1</output>
+    <!-- Final Velocity Report -->
+    &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <text style="color: red"
+      >*Impact occurs with a final velocity of <span id="finalVelocity">165.7</span> ft/s*<text/>
+    <datalist id="values">
+      <option value="0.4" label="0.4"></option>
+      <option value="0.6" label="0.6"></option>
+      <option value="0.8" label="0.8"></option>
+      <option value="1" label="1.0"></option>
+      <option value="1.2" label="1.2"></option>
+    </datalist>
+    <!-- Submit Button -->
+    <br />
+    <input type="submit" />
+  </form>
+  <h2>Kinematics</h2>
+  <div id="height"><!-- Height chart --></div>
+  <div id="velocity"><!-- Velocity chart--></div>
+  <div id="acceleration"><!-- Acceleration chart--></div>
+  <h2>Forces</h2>
+  <div id="force_grav"><!-- Grav Force chart --></div>
+  <div id="force_drag"><!-- Drag Force chart--></div>
+  <div id="force_net"><!-- Net Force chart--></div>
 </body>
