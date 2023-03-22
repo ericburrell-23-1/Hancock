@@ -7,7 +7,8 @@
       flex-direction: column;
       justify-content: space-between;
       writing-mode: vertical-lr;
-      width: 200px;
+      color: black;
+      width: 300px;
     }
 
     option {
@@ -31,8 +32,8 @@
     action="#"
     id="updateConstants"
     oninput="
-    CValue.value = C_drag.valueAsNumber;
-    areaValue.value = CSArea.valueAsNumber;
+    coeff_dragValue.value = coeff_drag.valueAsNumber;
+    area_csValue.value = area_cs.valueAsNumber;
     "
   >
     <!-- Weight Input -->
@@ -42,17 +43,18 @@
       id="weight"
       name="weight"
       value="175"
-      min="1"
+      min="0.1"
       max="10000"
+      step="any"
       required
     />
     lbs &nbsp;
     <!-- Tower Height Input -->
-    <label for="tower_height">Tower Height:</label>
+    <label for="height_tower">Tower Height:</label>
     <input
       type="number"
-      id="tower_height"
-      name="tower_height"
+      id="height_tower"
+      name="height_tower"
       value="1128"
       min="5"
       max="10000"
@@ -62,47 +64,50 @@
     <br />
     <br />
     <!-- Cross-Sectional Area Slider -->
-    <label for="CSArea">Cross-Sectional Area</label> <br />
+    <label for="area_cs">Cross-Sectional Area</label> <br />
     <input
       type="range"
-      id="CSArea"
-      name="CSArea"
-      min="2"
-      max="10"
+      id="area_cs"
+      name="area_cs"
+      min="0.1"
+      max="40"
       value="5"
       step="0.1"
     />
     <!-- Fall Time Report -->
-    <output name="areaValue" for="CSArea">5</output> ft<sup>2</sup>
+    <output name="area_csValue" for="area_cs">5</output> ft<sup>2</sup>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <text style="color: red">*It takes <span id="fallTime">10.094</span> seconds to hit the ground*</text>
     <br /><br />
     <!-- Drag Coefficient Slider -->
-    <label for="C_drag">Drag Coefficient</label> <br />
+    <label for="coeff_drag">Drag Coefficient</label> <br />
     <input
       type="range"
-      id="C_drag"
-      name="C_drag"
-      min="0.4"
-      max="1.2"
+      id="coeff_drag"
+      name="coeff_drag"
+      min="0.04"
+      max="1.75"
       value="1.0"
       step="0.001"
       list="values"
     />
-    <output name="CValue" for="C_drag">1</output>
+    <output name="coeff_dragValue" for="coeff_drag">1</output>
     <!-- Final Velocity Report -->
     &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <text style="color: red"
-      >*Impact occurs with a final velocity of <span id="finalVelocity">165.7</span> ft/s*<text/>
-    <datalist id="values">
-      <option value="0.4" label="0.4"></option>
-      <option value="0.6" label="0.6"></option>
-      <option value="0.8" label="0.8"></option>
-      <option value="1" label="1.0"></option>
-      <option value="1.2" label="1.2"></option>
-    </datalist>
+      >*Impact occurs with a final velocity of <span id="velocity_final">165.7</span> ft/s*<text/>
+      <datalist id="values">
+        <option value="0.04" label="streamline"></option>
+        <option value="0.04" label=""></option>
+        <option value="0.47" label="sphere"></option>
+        <option value="0.7" label="nose dive"></option>
+        <option value="1" label="skydiver"></option>
+        <option value="1.38" label="parachute"></option>
+        <option value="1.38" label=""></option>
+        <option value="1.38" label=""></option>
+      </datalist>
     <!-- Submit Button -->
     <br />
     <input type="submit" />
@@ -112,7 +117,5 @@
   <div id="velocity"><!-- Velocity chart--></div>
   <div id="acceleration"><!-- Acceleration chart--></div>
   <h2>Forces</h2>
-  <div id="force_grav"><!-- Grav Force chart --></div>
-  <div id="force_drag"><!-- Drag Force chart--></div>
-  <div id="force_net"><!-- Net Force chart--></div>
+  <div id="forces"><!-- Forces chart --></div>
 </body>
